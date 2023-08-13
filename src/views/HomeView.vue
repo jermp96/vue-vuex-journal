@@ -1,6 +1,8 @@
 <template>
   <div>
     <h1>home</h1>
+    <button class="btn btn-primary">primary</button>
+    <button class="btn btn-secondary">secondary</button>
   </div>
 </template>
 
