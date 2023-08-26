@@ -1,11 +1,13 @@
 <template>
   <Navbar/>
   <div class="container-fluid">
-    <div class="col-4">
-      <EntryList/>
-    </div>
-    <div class="col">
-      <router-view></router-view>
+    <div class="row">
+      <div class="col-4">
+        <EntryList/>
+      </div>
+      <div class="col-8">
+        <router-view></router-view>
+      </div>
     </div>
   </div>
 </template>
