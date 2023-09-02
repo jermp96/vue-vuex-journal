@@ -1,3 +1,3 @@
-export const myGetter = (state) => {
+export const myGetter = (state: any) => {
   return state;
 }
