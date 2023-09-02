@@ -20,13 +20,13 @@ export default () => ({
       picture: null
     },
     {
-      id: new Date().getTime() + 1000,
+      id: new Date().getTime() + 1001,
       date: new Date().toDateString(),
       text: 'Esse qui ex laboris laboris consequat sint ad dolor sunt ipsum qui elit non. Ad est et ex culpa in do occaecat nulla nostrud incididunt minim nisi. Adipisicing occaecat ullamco magna do fugiat reprehenderit consectetur incididunt ea. Anim cupidatat anim ea est laborum eiusmod aliqua nostrud reprehenderit officia qui. Est exercitation qui tempor nostrud. Ad dolor ea minim magna consequat consequat exercitation. Aliquip aliqua mollit eu elit eu amet mollit incididunt labore duis pariatur.',
       picture: null
     },
     {
-      id: new Date().getTime() + 1000,
+      id: new Date().getTime() + 1002,
       date: new Date().toDateString(),
       text: 'Lorem dolore laborum labore Lorem. Ea elit voluptate dolor irure pariatur ea incididunt qui laborum cillum adipisicing sit. Reprehenderit in consectetur duis elit velit et nisi culpa consequat tempor in.',
       picture: null
