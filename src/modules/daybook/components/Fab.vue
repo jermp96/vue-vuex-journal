@@ -12,9 +12,9 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
   button {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
     border-radius: 10px;
+    bottom: 20px;
+    position: fixed;
+    right: 20px;
   }
 </style>

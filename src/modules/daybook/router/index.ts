@@ -9,6 +9,11 @@ const daybookRouter: RouteRecordRaw = {
       path: '',
       name: 'no-entry',
       component: () => import('@/modules/daybook/views/NoEntrySelected.vue')
+    },
+    {
+      path: ':id',
+      name: 'entry',
+      component: () => import('@/modules/daybook/views/EntryView.vue')
     }
   ]
 } 
