@@ -24,11 +24,29 @@
 </template>
 <script lang="ts">
 import { defineAsyncComponent, defineComponent } from 'vue';
+import { mapGetters } from 'vuex';
 
 export default defineComponent({
   components: {
     Fab: defineAsyncComponent(() => import('../components/Fab.vue'))
-  }
+  },
+  props: {
+    id: {
+      type: String,
+      required: true
+    }
+  },
+  computed: {
+    ...mapGetters('journal', ['getEntryById'])
+  },
+  methods: {
+    loadEntry() {
+      console.log(this.getEntryById(this.id))
+    }
+  },
+  created() {
+      this.loadEntry();
+  },
 })
 </script>
 
