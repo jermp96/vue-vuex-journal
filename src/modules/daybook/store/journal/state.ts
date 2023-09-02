@@ -1,6 +1,13 @@
 export interface JournalState {
   isLoading: boolean;
-  entries: Array<{id: number, date: string, text: string, picture:string | null}>
+  entries: Array<Entry>
+}
+
+export interface Entry {
+  id: number;
+  date: string
+  text: string;
+  picture:string | null;
 }
 
 export default () => ({
