@@ -1,13 +1,18 @@
 <template>
   <button class="btn btn-primary">
-    Agregar
+    {{ isEdit ? 'Guardar' : 'Agregar' }}
   </button>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  
+  props: {
+    isEdit: {
+      type: Boolean,
+      default: false
+    }
+  }
 })
 </script>
 <style lang="scss" scoped>
