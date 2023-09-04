@@ -27,7 +27,7 @@
 </template>
 <script lang="ts">
 import { defineAsyncComponent, defineComponent } from 'vue';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import getDayMonthYear from '../helpers/getDayMonthYear';
 
 export default defineComponent({
@@ -61,6 +61,7 @@ export default defineComponent({
     }
   },
   methods: {
+    ...mapActions('journal', ['updateEntry']),
     loadEntry() {
       const entry = this.getEntryById(this.id);
       if(entry) {
@@ -71,7 +72,9 @@ export default defineComponent({
       }
     },
     async saveEntry() {
-      console.log('saving entry...')
+      console.log('saving entry...');
+      const entry = {...this.entry};
+      this.updateEntry(entry);
     }
   },
   created() {

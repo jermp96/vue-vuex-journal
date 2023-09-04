@@ -9,8 +9,9 @@ export const setEntries = (state: JournalState, entries: Array<Entry>) => {
   state.isLoading = false;
 }
 
-export const updateEntries = (/*state*/) => {
-  
+export const updateEntries = (state: JournalState, entry: Entry) => {
+  const newEntries = [...state.entries.map( el => el.id === entry.id ? {...entry} : el)];
+  state.entries = [...newEntries];
 }
 
 export const addEntries = (/*state*/) => {
