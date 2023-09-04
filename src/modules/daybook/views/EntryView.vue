@@ -29,6 +29,7 @@
 import { defineAsyncComponent, defineComponent } from 'vue';
 import { mapGetters, mapActions } from 'vuex';
 import getDayMonthYear from '../helpers/getDayMonthYear';
+import type { Entry } from '../store/journal/state';
 
 export default defineComponent({
   components: {
@@ -63,18 +64,28 @@ export default defineComponent({
   methods: {
     ...mapActions('journal', ['updateEntry']),
     loadEntry() {
-      const entry = this.getEntryById(this.id);
-      if(entry) {
-        this.entry = entry;
+      let entry: Entry;
+      if(this.id === 'new'){
+        entry = {
+          text: 'nueva entrada',
+          date: new Date().toDateString()
+        }
       }
-      if(!entry) {
-        return this.$router.push({name: 'no-entry'});
+      if(this.id !== 'new') {
+        entry = this.getEntryById(this.id);
+        if(!entry) {
+          return this.$router.push({name: 'no-entry'});
+        }
       }
+      this.entry = entry;
     },
     async saveEntry() {
-      console.log('saving entry...');
-      const entry = {...this.entry};
-      this.updateEntry(entry);
+      if(this.entry.id) {
+        await this.updateEntry({...this.entry});
+      }
+      if(!this.entry.id) {
+        console.log('nueva entrada');
+      }
     }
   },
   created() {

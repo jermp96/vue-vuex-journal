@@ -4,10 +4,10 @@ export interface JournalState {
 }
 
 export interface Entry {
-  id: string;
+  id?: string;
   date: string
   text: string;
-  picture:string | null;
+  picture?:string | null;
 }
 
 export default () => ({
