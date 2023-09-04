@@ -8,7 +8,9 @@
       </div>
   
       <div>
-        <button class="btn btn-danger mx-2">Borrar</button>
+        <button
+        v-if="entry.id"
+        @click="onDeleteEntry" class="btn btn-danger mx-2">Borrar</button>
         <button class="btn btn-primary mx-2">Subir foto</button>
       </div>
     </div>
@@ -62,7 +64,7 @@ export default defineComponent({
     }
   },
   methods: {
-    ...mapActions('journal', ['updateEntry', 'createEntry']),
+    ...mapActions('journal', ['updateEntry', 'createEntry', 'deleteEntry']),
     loadEntry() {
       let entry: Entry;
       if(this.id === 'new'){
@@ -87,6 +89,10 @@ export default defineComponent({
        const entryId = await this.createEntry({...this.entry});
        this.$router.push({name: 'entry', params: {id: entryId}});
       }
+    },
+    async onDeleteEntry() {
+      await this.deleteEntry(this.entry.id);
+      this.$router.push({name: 'no-entry'})
     }
   },
   created() {
