@@ -1,5 +1,5 @@
 <template>
-  <button class="btn btn-primary">
+  <button @click="$emit('on:click')" class="btn btn-primary">
     {{ isEdit ? 'Guardar' : 'Agregar' }}
   </button>
 </template>
