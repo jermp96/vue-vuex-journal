@@ -14,6 +14,6 @@ export const updateEntries = (state: JournalState, entry: Entry) => {
   state.entries = [...newEntries];
 }
 
-export const addEntries = (/*state*/) => {
-  
+export const addEntry = (state: JournalState, entry: Entry) => {
+  state.entries = [entry, ...state.entries]
 }

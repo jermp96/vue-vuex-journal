@@ -62,7 +62,7 @@ export default defineComponent({
     }
   },
   methods: {
-    ...mapActions('journal', ['updateEntry']),
+    ...mapActions('journal', ['updateEntry', 'createEntry']),
     loadEntry() {
       let entry: Entry;
       if(this.id === 'new'){
@@ -84,7 +84,8 @@ export default defineComponent({
         await this.updateEntry({...this.entry});
       }
       if(!this.entry.id) {
-        console.log('nueva entrada');
+       const entryId = await this.createEntry({...this.entry});
+       this.$router.push({name: 'entry', params: {id: entryId}});
       }
     }
   },
