@@ -30,6 +30,7 @@
 <script lang="ts">
 import { defineAsyncComponent, defineComponent } from 'vue';
 import { mapGetters, mapActions } from 'vuex';
+import swal from 'sweetalert2';
 import getDayMonthYear from '../helpers/getDayMonthYear';
 import type { Entry } from '../store/journal/state';
 
@@ -82,6 +83,12 @@ export default defineComponent({
       this.entry = entry;
     },
     async saveEntry() {
+      new swal({
+        title: 'Espere por favor',
+        allowOutsideClick: false
+      });
+      swal.showLoading();
+
       if(this.entry.id) {
         await this.updateEntry({...this.entry});
       }
@@ -89,10 +96,27 @@ export default defineComponent({
        const entryId = await this.createEntry({...this.entry});
        this.$router.push({name: 'entry', params: {id: entryId}});
       }
+      swal.fire('Guardado', 'Entrada registrada con éxito', 'success');
     },
     async onDeleteEntry() {
-      await this.deleteEntry(this.entry.id);
-      this.$router.push({name: 'no-entry'})
+      const result = await swal.fire({
+        title: 'estás seguro?',
+        text: 'Una vez borrado, no se puede recuperar',
+        showDenyButton: true,
+        confirmButtonText: 'Sí, estoy seguro'
+      });
+
+      if(result.isConfirmed) {
+        new swal({
+        title: 'Espere por favor',
+        allowOutsideClick: false
+       });
+       swal.showLoading();
+       await this.deleteEntry(this.entry.id);
+       this.$router.push({name: 'no-entry'});
+
+       swal.fire('Elimnado', '', 'success');
+      }
     }
   },
   created() {
